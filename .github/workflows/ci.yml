@@ -11,7 +11,7 @@ on:
 jobs:
   docker-build-tag-push:
     name: Build and push Docker image to GitHub Registry
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
