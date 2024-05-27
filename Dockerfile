@@ -4,14 +4,15 @@ FROM node:slim
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
+# Copy the application's code
+COPY bot.js ./
+COPY .env ./
+
 # Copy the package.json and package-lock.json files
 COPY package*.json ./
-COPY .env ./
-# Install only production dependencies and build the app (if necessary)
-RUN npm install --only=production
 
-# Copy the rest of the application's code
-COPY . .
+# Install only production dependencies and build the app (if necessary)
+RUN npm ci --include prod
 
 # Use an unprivileged user to run the app
 USER node
