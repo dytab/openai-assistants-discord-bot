@@ -1,8 +1,11 @@
-version: '3.8'
-
+version: '3'
 services:
-  bot:
-    build: .
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/.docker/config.json:/config.json
+    command: --interval 600
+  discordbot:
+    image: ghcr.io/dytab/openai-assistants-discord-bot:latest
     restart: always
-    env_file:
-      - .env
